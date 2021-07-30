@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<!-- saved from url=(0069)https://urfdvw.github.io/Brython-Editor/Examples/area_calculator.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<script type="text/javascript" src="./area_calculator_files/brython.js.download"></script>
+<script type="text/javascript" src="./area_calculator_files/brython_stdlib.js.download"></script>
+</head>
+<body onload="brython(1)">
+shape: 
+<select id="shape">
+    <option value="triangle">triangle</option>
+    <option value="square">square</option>
+    <option value="pentagon">pentagon</option>
+    <option value="circle">circle</option>
+</select><br>
+length of edge or radius: <input id="length" value="10"><br>
+<button id="calculate">calculate area</button><br>
+area: <text id="area"></text>
+<script type="text/python">
+from browser import document
+
+def calculate_area(event): 
+    ratio = {
+        'square': 1,
+        'triangle': 0.433,
+        'pentagon': 1.72,
+        'circle': 3.1415927,
+    }
+
+    shape = document["shape"].value
+    length = float(document["length"].value)
+    document["area"].textContent = length ** 2 * ratio[shape]
+    
+document["calculate"].bind("click", calculate_area)
+</script>
+
+
+</body></html>
